@@ -1,0 +1,10 @@
+### Starting build.
+# Target: HelloWorld.ml.depends, tags: { extension:ml, file:HelloWorld.ml, ocaml, ocamldep, quiet }
+/Users/eundolee/.opam/4.08.1/bin/ocamldep.opt -modules HelloWorld.ml > HelloWorld.ml.depends
+# Target: HelloWorld.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:HelloWorld.cmo, file:HelloWorld.ml, implem, ocaml, quiet }
+/Users/eundolee/.opam/4.08.1/bin/ocamlc.opt -c -o HelloWorld.cmo HelloWorld.ml
+# Target: HelloWorld.cmx, tags: { compile, extension:cmx, extension:ml, file:HelloWorld.cmx, file:HelloWorld.ml, implem, native, ocaml, quiet }
+/Users/eundolee/.opam/4.08.1/bin/ocamlopt.opt -c -o HelloWorld.cmx HelloWorld.ml
+# Target: HelloWorld.native, tags: { dont_link_with, extension:native, file:HelloWorld.native, link, native, ocaml, program, quiet }
+/Users/eundolee/.opam/4.08.1/bin/ocamlopt.opt HelloWorld.cmx -o HelloWorld.native
+# Compilation successful.

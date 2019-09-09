@@ -1,0 +1,5 @@
+"Rule: ocaml: ml & cmi -> cmx & o (%=HelloWorld )": "\2228\238\253Z\183i\190Ww\031\141\158\229\188\195"
+"Rule: ocaml: cmx* & o* -> native (%=HelloWorld )": "%\248,\027\001\197((\213-\164\022\212\240#\025"
+"Rule: ocaml: ml -> cmo & cmi (%=HelloWorld )": "\168J\150(\1569j\228:F\232P\253\239\154\156"
+"Resource: /Users/eundolee/snu-git/snu-2019-2/PL/personal/OCaml/HelloWorld.ml": "\231GzC\1286\154\224\128\180\182>\030\"c\139"
+"Rule: ocaml dependencies ml (%=HelloWorld )": "\020\202\147(}\216y\157\203\158\140\136\133\199\245\235"
