@@ -1,0 +1,8 @@
+let x := 0 in
+while x < 100 do (
+    x := x + 1;
+    write (x)
+);
+
+while (not true) do write (true + 5)
+

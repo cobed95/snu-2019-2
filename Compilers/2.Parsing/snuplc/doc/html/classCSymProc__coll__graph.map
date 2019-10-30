@@ -1,0 +1,13 @@
+<map id="CSymProc" name="CSymProc">
+<area shape="rect" id="node1" title="procedure symbol" alt="" coords="323,557,410,584"/>
+<area shape="rect" id="node2" href="$classCSymbol.html" title="SnuPL symbol." alt="" coords="215,200,291,227"/>
+<area shape="rect" id="node4" title=" " alt="" coords="5,289,205,316"/>
+<area shape="rect" id="node11" href="$classCSymLocal.html" title="local variable" alt="" coords="396,289,487,316"/>
+<area shape="rect" id="node3" href="$classCSymtab.html" title="SnuPL symbol table." alt="" coords="149,379,227,405"/>
+<area shape="rect" id="node5" title="STL class." alt="" coords="89,96,169,123"/>
+<area shape="rect" id="node6" title="STL class." alt="" coords="66,5,193,47"/>
+<area shape="rect" id="node7" href="$classCType.html" title="SnuPL base type." alt="" coords="216,96,277,123"/>
+<area shape="rect" id="node8" href="$classCDataInitializer.html" title="SnuPL data initializer." alt="" coords="301,96,413,123"/>
+<area shape="rect" id="node9" title=" " alt="" coords="383,468,575,495"/>
+<area shape="rect" id="node10" href="$classCSymParam.html" title="procedure parameter" alt="" coords="406,379,503,405"/>
+</map>

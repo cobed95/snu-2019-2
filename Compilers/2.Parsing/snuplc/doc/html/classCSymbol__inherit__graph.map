@@ -1,0 +1,8 @@
+<map id="CSymbol" name="CSymbol">
+<area shape="rect" id="node1" title="SnuPL symbol." alt="" coords="210,5,286,32"/>
+<area shape="rect" id="node2" href="$classCSymConstant.html" title="constant variable" alt="" coords="5,80,117,107"/>
+<area shape="rect" id="node3" href="$classCSymGlobal.html" title="global variable" alt="" coords="141,80,237,107"/>
+<area shape="rect" id="node4" href="$classCSymLocal.html" title="local variable" alt="" coords="261,80,352,107"/>
+<area shape="rect" id="node6" href="$classCSymProc.html" title="procedure symbol" alt="" coords="377,80,463,107"/>
+<area shape="rect" id="node5" href="$classCSymParam.html" title="procedure parameter" alt="" coords="258,155,355,181"/>
+</map>

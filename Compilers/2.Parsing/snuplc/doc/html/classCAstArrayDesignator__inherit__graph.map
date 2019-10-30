@@ -1,0 +1,7 @@
+<map id="CAstArrayDesignator" name="CAstArrayDesignator">
+<area shape="rect" id="node1" title="AST array designator." alt="" coords="5,304,152,331"/>
+<area shape="rect" id="node2" href="$classCAstDesignator.html" title="AST designator." alt="" coords="21,229,136,256"/>
+<area shape="rect" id="node3" href="$classCAstOperand.html" title="AST operand node." alt="" coords="28,155,129,181"/>
+<area shape="rect" id="node4" href="$classCAstExpression.html" title="AST expression node." alt="" coords="20,80,137,107"/>
+<area shape="rect" id="node5" href="$classCAstNode.html" title="AST base node." alt="" coords="37,5,120,32"/>
+</map>

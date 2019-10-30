@@ -1,0 +1,13 @@
+<map id="CTypeManager" name="CTypeManager">
+<area shape="rect" id="node1" title="type manager" alt="" coords="1004,187,1115,213"/>
+<area shape="rect" id="node2" href="$classCIntType.html" title="integer type" alt="" coords="566,25,642,52"/>
+<area shape="rect" id="node3" href="$classCScalarType.html" title="abstract base class for scalar types" alt="" coords="180,187,279,213"/>
+<area shape="rect" id="node5" href="$classCNullType.html" title="NULL type." alt="" coords="562,187,646,213"/>
+<area shape="rect" id="node8" href="$classCCharType.html" title="char type" alt="" coords="775,248,865,275"/>
+<area shape="rect" id="node10" href="$classCPointerType.html" title="pointer type" alt="" coords="384,136,487,163"/>
+<area shape="rect" id="node11" href="$classCBoolType.html" title="boolean type" alt="" coords="392,300,479,327"/>
+<area shape="rect" id="node4" href="$classCType.html" title="SnuPL base type." alt="" coords="5,204,67,231"/>
+<area shape="rect" id="node7" href="$classCArrayType.html" title="array type" alt="" coords="183,265,275,292"/>
+<area shape="rect" id="node6" title=" " alt="" coords="511,359,697,385"/>
+<area shape="rect" id="node9" title=" " alt="" coords="721,135,919,161"/>
+</map>

@@ -1,0 +1,17 @@
+<map id="CAstArrayDesignator" name="CAstArrayDesignator">
+<area shape="rect" id="node1" title="AST array designator." alt="" coords="301,645,448,672"/>
+<area shape="rect" id="node2" href="$classCAstDesignator.html" title="AST designator." alt="" coords="317,569,432,596"/>
+<area shape="rect" id="node3" href="$classCAstOperand.html" title="AST operand node." alt="" coords="328,468,429,495"/>
+<area shape="rect" id="node4" href="$classCAstExpression.html" title="AST expression node." alt="" coords="383,379,500,405"/>
+<area shape="rect" id="node15" title=" " alt="" coords="389,519,601,545"/>
+<area shape="rect" id="node5" href="$classCAstNode.html" title="AST base node." alt="" coords="424,289,507,316"/>
+<area shape="rect" id="node6" href="$classCToken.html" title="token class" alt="" coords="345,200,413,227"/>
+<area shape="rect" id="node7" title="STL class." alt="" coords="247,96,327,123"/>
+<area shape="rect" id="node10" href="$classCSymbol.html" title="SnuPL symbol." alt="" coords="94,200,170,227"/>
+<area shape="rect" id="node12" title=" " alt="" coords="200,289,400,316"/>
+<area shape="rect" id="node8" title="STL class." alt="" coords="223,5,350,47"/>
+<area shape="rect" id="node9" href="$classCTacAddr.html" title="address class" alt="" coords="437,200,518,227"/>
+<area shape="rect" id="node11" href="$classCSymtab.html" title="SnuPL symbol table." alt="" coords="185,379,263,405"/>
+<area shape="rect" id="node13" href="$classCType.html" title="SnuPL base type." alt="" coords="5,96,67,123"/>
+<area shape="rect" id="node14" href="$classCDataInitializer.html" title="SnuPL data initializer." alt="" coords="91,96,203,123"/>
+</map>

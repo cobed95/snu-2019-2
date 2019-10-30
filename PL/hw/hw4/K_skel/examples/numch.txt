@@ -1,0 +1,19 @@
+let proc get_unit_money (k) =
+    if k = 0 then 1
+    else if k = 1 then 10
+    else if k = 2 then 100
+    else if k = 3 then 500
+    else if k = 4 then 1000
+    else if k = 5 then 5000
+    else if k = 6 then 10000
+    else if k = 7 then 50000
+    else -1 in
+let proc numchk (n, k) =
+    if get_unit_money(k) = 1 then 1
+    else if n < get_unit_money(k) then numchk(n, (k - 1))
+    else if n = get_unit_money(k) then (numchk(n, (k - 1)) + 1)
+    else numchk(n, (k - 1)) + numchk((n - get_unit_money(k)), k) in
+let proc numch (n) = numchk (n, 7) in
+let input := 0 in
+read input;
+write (numch (input))

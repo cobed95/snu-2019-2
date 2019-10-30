@@ -1,7 +1,7 @@
 type expr = 
     | NUM of int
     | PLUS of expr * expr
-    | MINUS of expr * expr;;
+    | MINUS of expr * expr
 
 type formula =
     | TRUE
@@ -10,7 +10,7 @@ type formula =
     | ANDALSO of formula * formula
     | ORELSE of formula * formula
     | IMPLY of formula * formula
-    | LESS of expr * expr;;
+    | LESS of expr * expr
 
 let rec eval formula = 
     let rec evalExpr expr =
@@ -27,10 +27,5 @@ let rec eval formula =
     |IMPLY (predicate, conclusion) -> 
             if not (eval predicate) then true
             else eval conclusion
-    |LESS (lhs, rhs) -> (evalExpr lhs) < (evalExpr rhs);;
+    |LESS (lhs, rhs) -> (evalExpr lhs) < (evalExpr rhs)
 
-(* Below is for testing. Must be removed before submission *)
-let _ = 
-    if eval (NOT(LESS(PLUS(NUM(1), NUM(4)), MINUS(NUM(3), NUM(1))))) then 
-        print_endline "true"
-    else print_endline "false";;

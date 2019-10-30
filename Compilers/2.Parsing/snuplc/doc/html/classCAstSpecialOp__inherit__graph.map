@@ -1,0 +1,6 @@
+<map id="CAstSpecialOp" name="CAstSpecialOp">
+<area shape="rect" id="node1" title="AST special operation node." alt="" coords="8,229,120,256"/>
+<area shape="rect" id="node2" href="$classCAstOperation.html" title="AST operation node." alt="" coords="10,155,118,181"/>
+<area shape="rect" id="node3" href="$classCAstExpression.html" title="AST expression node." alt="" coords="5,80,123,107"/>
+<area shape="rect" id="node4" href="$classCAstNode.html" title="AST base node." alt="" coords="23,5,105,32"/>
+</map>

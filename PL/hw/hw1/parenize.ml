@@ -13,11 +13,11 @@ type team =
     | Norway
     | Sweden
     | England
-    | Argentina;;
+    | Argentina
 
 type tourna = 
     | LEAF of team
-    | NODE of tourna * tourna;;
+    | NODE of tourna * tourna
 
 let rec parenize tourna =
     match tourna with 
@@ -48,5 +48,5 @@ let rec parenize tourna =
             |Norway -> "Norway"
             |Sweden -> "Sweden"
             |England -> "England"
-            |Argentina -> "Argentina");;
+            |Argentina -> "Argentina")
 

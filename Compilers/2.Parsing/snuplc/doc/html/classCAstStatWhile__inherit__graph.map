@@ -1,0 +1,5 @@
+<map id="CAstStatWhile" name="CAstStatWhile">
+<area shape="rect" id="node1" title="AST while statement node." alt="" coords="7,155,116,181"/>
+<area shape="rect" id="node2" href="$classCAstStatement.html" title="AST statement node." alt="" coords="5,80,117,107"/>
+<area shape="rect" id="node3" href="$classCAstNode.html" title="AST base node." alt="" coords="20,5,103,32"/>
+</map>

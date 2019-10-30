@@ -1,0 +1,21 @@
+<map id="CAstStatCall" name="CAstStatCall">
+<area shape="rect" id="node1" title="AST procedure call statement node." alt="" coords="86,760,185,787"/>
+<area shape="rect" id="node2" href="$classCAstStatement.html" title="AST statement node." alt="" coords="26,531,138,557"/>
+<area shape="rect" id="node3" href="$classCAstNode.html" title="AST base node." alt="" coords="65,391,147,417"/>
+<area shape="rect" id="node9" href="$classCAstExpression.html" title="AST expression node." alt="" coords="161,480,278,507"/>
+<area shape="rect" id="node4" href="$classCToken.html" title="token class" alt="" coords="5,251,73,277"/>
+<area shape="rect" id="node5" title="STL class." alt="" coords="138,96,218,123"/>
+<area shape="rect" id="node12" href="$classCSymbol.html" title="SnuPL symbol." alt="" coords="352,200,428,227"/>
+<area shape="rect" id="node14" title=" " alt="" coords="290,301,490,328"/>
+<area shape="rect" id="node6" title="STL class." alt="" coords="115,5,241,47"/>
+<area shape="rect" id="node7" href="$classCTacAddr.html" title="address class" alt="" coords="81,301,163,328"/>
+<area shape="rect" id="node8" href="$classCAstFunctionCall.html" title="AST function call node." alt="" coords="191,671,317,697"/>
+<area shape="rect" id="node10" title=" " alt="" coords="256,581,468,608"/>
+<area shape="rect" id="node11" href="$classCSymProc.html" title="procedure symbol" alt="" coords="492,581,579,608"/>
+<area shape="rect" id="node19" href="$classCSymLocal.html" title="local variable" alt="" coords="566,301,657,328"/>
+<area shape="rect" id="node13" href="$classCSymtab.html" title="SnuPL symbol table." alt="" coords="179,391,257,417"/>
+<area shape="rect" id="node15" href="$classCType.html" title="SnuPL base type." alt="" coords="423,96,485,123"/>
+<area shape="rect" id="node16" href="$classCDataInitializer.html" title="SnuPL data initializer." alt="" coords="287,96,399,123"/>
+<area shape="rect" id="node17" title=" " alt="" coords="565,480,757,507"/>
+<area shape="rect" id="node18" href="$classCSymParam.html" title="procedure parameter" alt="" coords="588,391,685,417"/>
+</map>

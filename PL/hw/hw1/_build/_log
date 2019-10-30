@@ -1,0 +1,10 @@
+### Starting build.
+# Target: sigma.ml.depends, tags: { extension:ml, file:sigma.ml, ocaml, ocamldep, quiet }
+/Users/eundolee/.opam/snupl/bin/ocamldep.opt -modules sigma.ml > sigma.ml.depends
+# Target: sigma.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:sigma.cmo, file:sigma.ml, implem, ocaml, quiet }
+/Users/eundolee/.opam/snupl/bin/ocamlc.opt -c -o sigma.cmo sigma.ml
+# Target: sigma.cmx, tags: { compile, extension:cmx, extension:ml, file:sigma.cmx, file:sigma.ml, implem, native, ocaml, quiet }
+/Users/eundolee/.opam/snupl/bin/ocamlopt.opt -c -o sigma.cmx sigma.ml
+# Target: sigma.native, tags: { dont_link_with, extension:native, file:sigma.native, link, native, ocaml, program, quiet }
+/Users/eundolee/.opam/snupl/bin/ocamlopt.opt sigma.cmx -o sigma.native
+# Compilation successful.

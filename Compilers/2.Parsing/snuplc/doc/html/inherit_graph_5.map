@@ -1,0 +1,8 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$classCSymbol.html" title="SnuPL symbol." alt="" coords="5,81,81,108"/>
+<area shape="rect" id="node2" href="$classCSymConstant.html" title="constant variable" alt="" coords="129,5,241,32"/>
+<area shape="rect" id="node3" href="$classCSymGlobal.html" title="global variable" alt="" coords="137,56,233,83"/>
+<area shape="rect" id="node4" href="$classCSymLocal.html" title="local variable" alt="" coords="140,107,231,133"/>
+<area shape="rect" id="node6" href="$classCSymProc.html" title="procedure symbol" alt="" coords="142,157,229,184"/>
+<area shape="rect" id="node5" href="$classCSymParam.html" title="procedure parameter" alt="" coords="289,107,387,133"/>
+</map>

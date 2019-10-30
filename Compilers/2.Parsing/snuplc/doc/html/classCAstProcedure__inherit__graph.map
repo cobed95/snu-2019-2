@@ -1,0 +1,5 @@
+<map id="CAstProcedure" name="CAstProcedure">
+<area shape="rect" id="node1" title="AST procedure scope." alt="" coords="5,155,116,181"/>
+<area shape="rect" id="node2" href="$classCAstScope.html" title="AST scope node." alt="" coords="16,80,105,107"/>
+<area shape="rect" id="node3" href="$classCAstNode.html" title="AST base node." alt="" coords="19,5,102,32"/>
+</map>

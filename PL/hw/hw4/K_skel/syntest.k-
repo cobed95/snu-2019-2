@@ -1,0 +1,5 @@
+let proc f() =
+    let proc g() = write(0) in
+    g();
+    write(1) in
+f()

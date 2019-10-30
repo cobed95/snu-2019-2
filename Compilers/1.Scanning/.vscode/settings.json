@@ -1,0 +1,7 @@
+{
+  "files.associations": {
+    "utility": "cpp",
+    "exception": "cpp",
+    "istream": "cpp"
+  }
+}

@@ -1,0 +1,88 @@
+let proc leaf(n) =
+    {
+        data := n,
+        isLeaf := true
+    } in
+let proc makeLtree(n, tree) =
+    {
+        data := n,
+        left := tree,
+        right := unit,
+        isLeaf := false
+    } in
+let proc makeRtree(n, tree) =
+    {
+        data := n,
+        left := unit,
+        right := tree,
+        isLeaf := false
+    } in
+let proc makeTree(n, leftTree, rightTree) =
+    {
+        data := n,
+        left := leftTree,
+        right := rightTree,
+        isLeaf := false
+    } in
+let proc isEmpty(tree) =
+    if tree = unit then true
+    else false in
+let proc rTree(tree) =
+    tree.right in
+let proc lTree(tree) =
+    tree.left in
+let proc nodeVal(tree) =
+    tree.data in
+let proc dft (tree) =
+    if isEmpty(tree) then unit
+    else (
+        write (nodeVal(tree));
+        if tree.isLeaf then unit
+        else (
+            dft(lTree(tree));
+            dft(rTree(tree))
+        )
+    ) in
+let nil := unit in
+let proc push(v, stack) = { head := v, tail := stack } in
+let emptyQ := { left := nil, right := nil } in
+let proc queueIsEmpty(queue) =
+    if queue.left = emptyQ.left then
+        if queue.right = emptyQ.right then true
+        else false
+    else false in
+let proc enqueue(v, queue) = { left := push(v, queue.left), right := queue.right } in
+let proc dump(queue) =
+    if queue.left = nil then queue
+    else dump({ left := queue.left.tail, right := push(queue.left.head, queue.right) }) in
+let proc dequeue(queue) =
+    if queueIsEmpty(queue) then unit
+    else if queue.right = nil then dequeue(dump(queue))
+    else {
+        value := queue.right.head,
+        queue := {
+            left := queue.left,
+            right := queue.right.tail
+        }
+    } in
+let q := emptyQ in
+let pair := unit in
+let node := unit in
+let proc bft(tree) =
+    q := enqueue(tree, q);
+    while queueIsEmpty(q) = false do (
+        pair := dequeue(q);
+        node := pair.value;
+        q := pair.queue;
+        if node = unit then ()
+        else (
+            write(nodeVal(node));
+            if node.isLeaf then ()
+            else (
+                q := enqueue(node.left, q);
+                q := enqueue(node.right, q)
+            )
+        )
+    ) in
+2019
+
