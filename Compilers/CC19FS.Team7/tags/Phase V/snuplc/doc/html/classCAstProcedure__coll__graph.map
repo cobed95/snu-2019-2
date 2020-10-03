@@ -1,0 +1,20 @@
+<map id="CAstProcedure" name="CAstProcedure">
+<area shape="rect" id="node2" href="$classCAstScope.html" title="AST scope node. " alt="" coords="1421,271,1511,297"/>
+<area shape="rect" id="node3" href="$classCAstNode.html" title="AST base node. " alt="" coords="665,492,748,519"/>
+<area shape="rect" id="node9" href="$classCAstStatement.html" title="AST statement node. " alt="" coords="1048,589,1160,616"/>
+<area shape="rect" id="node16" href="$classCScope.html" title="CScope" alt="" coords="913,347,983,373"/>
+<area shape="rect" id="node4" href="$classCToken.html" title="token class " alt="" coords="416,395,484,421"/>
+<area shape="rect" id="node5" title="STL class. " alt="" coords="181,313,261,340"/>
+<area shape="rect" id="node12" href="$classCSymbol.html" title="SnuPL symbol. " alt="" coords="910,93,986,120"/>
+<area shape="rect" id="node19" href="$classCTacInstr.html" title="instruction class " alt="" coords="667,596,747,623"/>
+<area shape="rect" id="node6" title="STL class. " alt="" coords="5,306,132,347"/>
+<area shape="rect" id="node7" href="$classCTacAddr.html" title="address class " alt="" coords="409,545,491,572"/>
+<area shape="rect" id="node8" href="$classCTac.html" title="three&#45;address code base class " alt="" coords="194,596,249,623"/>
+<area shape="rect" id="node10" href="$classCSymtab.html" title="SnuPL symbol table. " alt="" coords="668,212,745,239"/>
+<area shape="rect" id="node21" href="$classCSymProc.html" title="procedure symbol " alt="" coords="1904,144,1991,171"/>
+<area shape="rect" id="node24" href="$classCSymLocal.html" title="local variable " alt="" coords="1219,93,1309,120"/>
+<area shape="rect" id="node13" href="$classCType.html" title="SnuPL base type. " alt="" coords="676,123,737,149"/>
+<area shape="rect" id="node14" href="$classCDataInitializer.html" title="SnuPL data initializer. " alt="" coords="651,72,763,99"/>
+<area shape="rect" id="node15" href="$classCCodeBlock.html" title="code block " alt="" coords="1216,405,1312,432"/>
+<area shape="rect" id="node23" href="$classCSymParam.html" title="procedure parameter " alt="" coords="1417,93,1515,120"/>
+</map>

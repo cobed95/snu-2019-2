@@ -1,0 +1,18 @@
+<map id="CAstStatCall" name="CAstStatCall">
+<area shape="rect" id="node2" href="$classCAstStatement.html" title="AST statement node. " alt="" coords="251,531,363,557"/>
+<area shape="rect" id="node3" href="$classCAstNode.html" title="AST base node. " alt="" coords="480,391,563,417"/>
+<area shape="rect" id="node10" href="$classCAstExpression.html" title="AST expression node. " alt="" coords="463,480,580,507"/>
+<area shape="rect" id="node4" href="$classCToken.html" title="token class " alt="" coords="570,251,638,277"/>
+<area shape="rect" id="node5" title="STL class. " alt="" coords="319,96,399,123"/>
+<area shape="rect" id="node12" href="$classCSymbol.html" title="SnuPL symbol. " alt="" coords="143,200,219,227"/>
+<area shape="rect" id="node6" title="STL class. " alt="" coords="295,5,422,47"/>
+<area shape="rect" id="node7" href="$classCTacAddr.html" title="address class " alt="" coords="481,301,562,328"/>
+<area shape="rect" id="node8" href="$classCTac.html" title="three&#45;address code base class " alt="" coords="494,200,549,227"/>
+<area shape="rect" id="node9" href="$classCAstFunctionCall.html" title="AST function call node. " alt="" coords="347,671,472,697"/>
+<area shape="rect" id="node11" href="$classCSymProc.html" title="procedure symbol " alt="" coords="94,581,181,608"/>
+<area shape="rect" id="node19" href="$classCSymLocal.html" title="local variable " alt="" coords="43,301,133,328"/>
+<area shape="rect" id="node13" href="$classCSymtab.html" title="SnuPL symbol table. " alt="" coords="248,391,325,417"/>
+<area shape="rect" id="node15" href="$classCType.html" title="SnuPL base type. " alt="" coords="52,96,113,123"/>
+<area shape="rect" id="node16" href="$classCDataInitializer.html" title="SnuPL data initializer. " alt="" coords="137,96,249,123"/>
+<area shape="rect" id="node18" href="$classCSymParam.html" title="procedure parameter " alt="" coords="59,391,157,417"/>
+</map>

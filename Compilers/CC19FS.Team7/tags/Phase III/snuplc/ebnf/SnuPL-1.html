@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4190.409 Compilers - SnuPL/-1</title>
+  <xlink rel="stylesheet" href="https://stackedit.io/style.css" />
+  <style type="text/css">
+    body,html { 
+        font-size: 16px; 
+        font-family: Helvetica Neue, Helvetica, sans-serif;
+        line-height: 1.5;
+        margin: 0 auto;
+        padding-left: 30px;
+        padding-right: 30px;
+        max-width: 800px;
+      }
+    h1,h2 {
+        border-bottom: 1px solid black;
+      }
+    p {
+        margin: 1.2em 0;
+        text-align: justify;
+      }
+    pre {
+        margin: 1.2em 0;
+      }
+    code {
+        background-color: #ccc;
+        display: block;        
+        white-space: pre;
+      }
+  </style>
+</head>
+
+<body>
+<h1 id="snupl-1">SnuPL/-1</h1>
+<p>SnuPL/-1 defines a simple grammar consisting of assignments to ‘variables’ formed by expressions of constant digits using addition, subtraction, multiplication, and division. Expressions can be compared for equality (=) or inequality (#). All variable names are lower-caps and are only one character long. Separate assignment statements are separated by a semicolon (;). The end of the program is marked by a dot.</p>
+<h2 id="ebnf">EBNF</h2>
+<pre><code>module       = statSequence "."
+digit        = "0".."9".
+letter       = "a".."z".
+factOp       = "*" | "/".
+termOp       = "+" | "-".
+relOp        = "=" | "#".
+factor       = digit | "(" expression ")".
+term         = factor { factOp factor }.
+simpleexpr   = term { termOp term }.
+expression   = simpleexpr [ relOp simpleexpr ].
+assignment   = letter ":=" expression.
+statement    = assignment.
+statSequence = [ statement { ";" statement } ].
+whitespace   = { " " | \n }+.
+</code></pre>
+<h2 id="example">Examples</h2>
+<p>A valid SnuPL/-1 program.</p>
+<pre><code>a := 5 + (10 * 5 / 25) - 2;
+b := (1 + 1);
+c := (2 * 3) = (3 * 2);
+d    :=1      +2/3*    2=    5
+.
+</code></pre>
+<p>Some invalid statements.</p>
+<pre><code>a := 1 +/ 2 3; 
+b := 1 = 2 = 3;      // only one relOp is allowed
+cd := 12 + 13;       // variables/numbers must be one character/digit only
+</code></pre>
+</body>
+
+</html>

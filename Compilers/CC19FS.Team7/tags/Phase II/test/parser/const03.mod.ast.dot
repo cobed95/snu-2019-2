@@ -1,0 +1,33 @@
+digraph AST {
+  graph [fontname="Times New Roman",fontsize=10];
+  node  [fontname="Courier New",fontsize=10];
+  edge  [fontname="Times New Roman",fontsize=10];
+
+  node0 [label="m const03",shape=box];
+  node19 [label="call WriteStr",shape=box];
+  node20 [label="S",shape=ellipse];
+  node19->node20;
+  node0 -> node19 [style=dotted];
+  node22 [label="call WriteLn",shape=box];
+  node19 -> node22 [style=dotted];
+  node24 [label="call WriteStr",shape=box];
+  node25 [label="\"N = \"",shape=ellipse];
+  node24->node25;
+  node22 -> node24 [style=dotted];
+  node27 [label="call WriteInt",shape=box];
+  node28 [label="N",shape=ellipse];
+  node27->node28;
+  node24 -> node27 [style=dotted];
+  node30 [label="call WriteLn",shape=box];
+  node27 -> node30 [style=dotted];
+  node32 [label="call WriteStr",shape=box];
+  node33 [label="\"M = \"",shape=ellipse];
+  node32->node33;
+  node30 -> node32 [style=dotted];
+  node35 [label="call WriteInt",shape=box];
+  node36 [label="M",shape=ellipse];
+  node35->node36;
+  node32 -> node35 [style=dotted];
+  node38 [label="call WriteLn",shape=box];
+  node35 -> node38 [style=dotted];
+}

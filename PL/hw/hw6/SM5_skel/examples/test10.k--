@@ -1,0 +1,11 @@
+(* while loop *)
+
+let s := 0 in
+let n := 0 in
+read n;
+while 0 < n do (
+  s := s + n;
+  n := n - 1
+);
+write s
+

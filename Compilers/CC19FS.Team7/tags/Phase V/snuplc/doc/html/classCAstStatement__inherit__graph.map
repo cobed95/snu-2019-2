@@ -1,0 +1,8 @@
+<map id="CAstStatement" name="CAstStatement">
+<area shape="rect" id="node3" href="$classCAstStatAssign.html" title="AST assignment statement node. " alt="" coords="5,155,121,181"/>
+<area shape="rect" id="node4" href="$classCAstStatCall.html" title="AST procedure call statement node. " alt="" coords="146,155,245,181"/>
+<area shape="rect" id="node5" href="$classCAstStatIf.html" title="AST if&#45;else statement node. " alt="" coords="269,155,353,181"/>
+<area shape="rect" id="node6" href="$classCAstStatReturn.html" title="AST return statement node. " alt="" coords="378,155,493,181"/>
+<area shape="rect" id="node7" href="$classCAstStatWhile.html" title="AST while statement node. " alt="" coords="517,155,626,181"/>
+<area shape="rect" id="node2" href="$classCAstNode.html" title="AST base node. " alt="" coords="270,5,353,32"/>
+</map>

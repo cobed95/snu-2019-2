@@ -1,0 +1,8 @@
+digraph IR {
+  graph [fontname="Times New Roman",fontsize=10];
+  node  [fontname="Courier New",fontsize=10];
+  edge  [fontname="Times New Roman",fontsize=10];
+
+  // scope 'test9'
+  test9_cb [label="test9\r  0:     assign b <- 1\l  1:     assign b <- 0\l  2:     &()    t0 <- B\l  3:     param  0 <- \l  4:     call   t1 <- DOFS\l  5:     mul    t2 <- 1, 0\l  6:     add    t3 <- t1, t2\l  7:     add    t4 <- t0, t3\l  8:     assign b <- @B\l  9:     &()    t6 <- A\l 10:     param  0 <- \l 11:     call   t7 <- DOFS\l 12:     mul    t8 <- 4, 0\l 13:     add    t9 <- t7, t8\l 14:     add    t10 <- t6, t9\l 15:     assign t5 <- 1\l 16:     goto   6\l 17:     assign t5 <- 0\l 18: 6:\l 19:     assign b <- t5\l 20:     goto   9\l 21:     assign b <- 1\l 22: 9:\l 23:     assign b <- 0\l 24:     &()    t11 <- B\l 25:     param  0 <- \l 26:     call   t12 <- DOFS\l 27:     mul    t13 <- 1, 0\l 28:     add    t14 <- t12, t13\l 29:     add    t15 <- t11, t14\l 30:     *()    t16 <- t15\l 31:     if     t16 = 0 goto 14\l 32:     assign b <- 1\l 33: 14:\l 34:     assign b <- 0\l 35:     &()    t17 <- A\l 36:     param  0 <- \l 37:     call   t18 <- DOFS\l 38:     mul    t19 <- 4, 0\l 39:     add    t20 <- t18, t19\l 40:     add    t21 <- t17, t20\l 41:     assign b <- 1\l 42:     assign b <- 0\l 43:     assign i <- 0\l",shape=box]
+};

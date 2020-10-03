@@ -1,0 +1,10 @@
+<map id="src/symtab.h" name="src/symtab.h">
+<area shape="rect" id="node2" href="$ast_8h.html" title="src/ast.h" alt="" coords="207,155,280,181"/>
+<area shape="rect" id="node5" href="$parser_8h.html" title="src/parser.h" alt="" coords="85,229,175,256"/>
+<area shape="rect" id="node8" href="$ir_8h.html" title="src/ir.h" alt="" coords="251,80,313,107"/>
+<area shape="rect" id="node9" href="$symtab_8cpp.html" title="src/symtab.cpp" alt="" coords="338,80,450,107"/>
+<area shape="rect" id="node3" href="$ast_8cpp.html" title="src/ast.cpp" alt="" coords="200,229,287,256"/>
+<area shape="rect" id="node4" href="$ir_8cpp.html" title="src/ir.cpp" alt="" coords="311,229,387,256"/>
+<area shape="rect" id="node6" href="$parser_8cpp.html" title="src/parser.cpp" alt="" coords="5,304,111,331"/>
+<area shape="rect" id="node7" href="$test__parser_8cpp.html" title="src/test_parser.cpp" alt="" coords="135,304,269,331"/>
+</map>

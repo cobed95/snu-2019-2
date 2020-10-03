@@ -1,0 +1,10 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$classCTac.html" title="three&#45;address code base class " alt="" coords="5,81,60,108"/>
+<area shape="rect" id="node2" href="$classCTacAddr.html" title="address class " alt="" coords="108,56,189,83"/>
+<area shape="rect" id="node7" href="$classCTacInstr.html" title="instruction class " alt="" coords="109,107,189,133"/>
+<area shape="rect" id="node3" href="$classCTacConst.html" title="CTacConst" alt="" coords="237,5,327,32"/>
+<area shape="rect" id="node4" href="$classCTacName.html" title="CTacName" alt="" coords="237,56,327,83"/>
+<area shape="rect" id="node5" href="$classCTacReference.html" title="CTacReference" alt="" coords="375,31,489,57"/>
+<area shape="rect" id="node6" href="$classCTacTemp.html" title="CTacTemp" alt="" coords="389,81,475,108"/>
+<area shape="rect" id="node8" href="$classCTacLabel.html" title="label class " alt="" coords="239,107,325,133"/>
+</map>

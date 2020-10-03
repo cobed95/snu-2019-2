@@ -1,0 +1,5 @@
+parsing './run_test.sh'...
+parse error at 1:1 : expected 'tModule', got 'tIdent'
+
+
+Done.
