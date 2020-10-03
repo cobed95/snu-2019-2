@@ -1,0 +1,364 @@
+(*
+ * SNU 4190.310 Programming Languages
+ * Type Checker Skeleton
+ *)
+
+open M
+open Pp
+
+type var = string
+
+type typ = 
+  | TInt
+  | TBool
+  | TString
+  | TPrim of typ
+  | TLoc of typ
+  | TComparable of typ
+  | TPair of typ * typ
+  | TFun of typ * typ
+  | TVar of var
+  (* Modify, or add more if needed *)
+
+type typ_scheme =
+  | SimpleTyp of typ 
+  | GenTyp of (var list * typ)
+
+type typ_env = (M.id * typ_scheme) list
+
+let count = ref 0 
+
+let new_var () = 
+  let _ = count := !count +1 in
+  "x_" ^ (string_of_int !count)
+
+(* Definitions related to free type variable *)
+
+let union_ftv ftv_1 ftv_2 = 
+  let ftv_1' = List.filter (fun v -> not (List.mem v ftv_2)) ftv_1 in
+  ftv_1' @ ftv_2
+  
+let sub_ftv ftv_1 ftv_2 =
+  List.filter (fun v -> not (List.mem v ftv_2)) ftv_1
+
+let rec ftv_of_typ : typ -> var list = function
+  | TInt | TBool | TString -> []
+  | TPrim t -> ftv_of_typ t
+  | TLoc t -> ftv_of_typ t
+  | TComparable t -> ftv_of_typ t
+  | TPair (t1, t2) -> union_ftv (ftv_of_typ t1) (ftv_of_typ t2)
+  | TFun (t1, t2) ->  union_ftv (ftv_of_typ t1) (ftv_of_typ t2)
+  | TVar v -> [v]
+
+let ftv_of_scheme : typ_scheme -> var list = function
+  | SimpleTyp t -> ftv_of_typ t
+  | GenTyp (alphas, t) -> sub_ftv (ftv_of_typ t) alphas 
+
+let ftv_of_env : typ_env -> var list = fun tyenv ->
+  List.fold_left 
+    (fun acc_ftv (id, tyscm) -> union_ftv acc_ftv (ftv_of_scheme tyscm))
+    [] tyenv 
+
+(* Generalize given type into a type scheme *)
+let generalize : typ_env -> typ -> typ_scheme = fun tyenv t ->
+  let env_ftv = ftv_of_env tyenv in
+  let typ_ftv = ftv_of_typ t in
+  let ftv = sub_ftv typ_ftv env_ftv in
+  if List.length ftv = 0 then
+    SimpleTyp t
+  else
+    GenTyp(ftv, t)
+
+(* Definitions related to substitution *)
+
+type subst = typ -> typ
+
+let empty_subst : subst = fun t -> t
+
+let make_subst : var -> typ -> subst = fun x t ->
+  let rec subs t' = 
+    match t' with
+    | TVar x' -> if (x = x') then t else t'
+    | TPair (t1, t2) -> TPair (subs t1, subs t2)
+    | TLoc t'' -> TLoc (subs t'')
+    | TFun (t1, t2) -> TFun (subs t1, subs t2)
+    | TInt | TBool | TString -> t'
+    | TPrim t'' -> TPrim (subs t'')
+    | TComparable t'' -> TComparable (subs t'')
+  in subs
+
+let (@@) s1 s2 = (fun t -> s1 (s2 t)) (* substitution composition *)
+
+let subst_scheme : subst -> typ_scheme -> typ_scheme = fun subs tyscm ->
+  match tyscm with
+  | SimpleTyp t -> SimpleTyp (subs t)
+  | GenTyp (alphas, t) ->
+    (* S (\all a.t) = \all b.S{a->b}t  (where b is new variable) *)
+    let betas = List.map (fun _ -> new_var()) alphas in
+    let s' =
+      List.fold_left2
+        (fun acc_subst alpha beta -> make_subst alpha (TVar beta) @@ acc_subst)
+        empty_subst alphas betas
+    in
+    GenTyp (betas, subs (s' t))
+
+let subst_env : subst -> typ_env -> typ_env = fun subs tyenv ->
+  List.map (fun (x, tyscm) -> (x, subst_scheme subs tyscm)) tyenv
+
+let rec string_of_typ t = 
+  match t with
+  | TInt -> "int"
+  | TBool -> "bool"
+  | TString -> "string"
+  | TPrim inner_t -> "primitive " ^ (string_of_typ inner_t)
+  | TLoc inner_t ->
+    "loc of " ^ (string_of_typ inner_t)
+  | TComparable inner_t -> "comparable " ^ (string_of_typ inner_t)
+  | TPair (t1, t2) -> 
+    "pair of " ^ (string_of_typ t1) ^ ", " ^ (string_of_typ t2)
+  | TFun (arg_t, res_t) ->
+    (string_of_typ arg_t) ^ " -> " ^ (string_of_typ res_t)
+  | TVar (name) -> name
+
+let rec unify t1 t2 =
+  match t1, t2 with
+  | TInt, TInt -> empty_subst
+  | TBool, TBool -> empty_subst
+  | TString, TString -> empty_subst
+  | TPrim _, TLoc _ | TLoc _, TPrim _
+  | TPrim _, TPair _ | TPair _, TPrim _
+  | TPrim _, TFun _ | TFun _, TPrim _ -> 
+    raise 
+      (M.TypeError 
+        ("A non-primitive type tried to be unified with a primitive type"))
+  | TLoc inner_t1, TLoc inner_t2 -> unify inner_t1 inner_t2
+  | TComparable _, TPair _ | TPair _, TComparable _
+  | TComparable _, TFun _ | TFun _, TComparable _ -> 
+    raise 
+      (M.TypeError 
+        ("A non-comparable type tried to be unified with a comparable type"))
+  | TPair (t1_1, t1_2), TPair (t2_1, t2_2) -> 
+    let s = unify t1_1 t2_1 in
+    let s' = unify (s t1_2) (s t2_2) in
+    s' @@ s
+  | TFun (arg_t1, res_t1), TFun (arg_t2, res_t2) ->
+    let s = unify arg_t1 arg_t2 in
+    let s' = unify (s res_t1) (s res_t2) in
+    s' @@ s
+  | TVar name1, TVar name2 ->
+    if name1 = name2 then empty_subst
+    else make_subst name1 t2
+  | TVar name, _ -> make_subst name t2
+  | _, TVar name -> make_subst name t1
+  | TPrim inner_t1, TPrim inner_t2 -> unify inner_t1 inner_t2
+  | TPrim _, TComparable inner_t2 -> unify t1 inner_t2
+  | TComparable inner_t1, TPrim _ -> unify inner_t1 t2
+  | TPrim inner_t1, _ -> unify inner_t1 t2
+  | _, TPrim inner_t2 -> unify t1 inner_t2
+  | TComparable inner_t1, TComparable inner_t2 -> unify inner_t1 inner_t2
+  | TComparable inner_t1, _ -> unify inner_t1 t2
+  | _, TComparable inner_t2 -> unify t1 inner_t2
+  | _ -> 
+    raise 
+      (M.TypeError 
+        ("Incompatible types " ^ 
+        (string_of_typ t1) ^ ", " ^ 
+        (string_of_typ t2)))
+
+let add_to_env (name, tp) tyenv =
+  if (List.exists (fun (s, _) -> s = name) tyenv)
+  then List.map (fun (s, t) -> if s = name then (s, tp) else (s, t)) tyenv
+  else (name, tp) :: tyenv
+
+let rec expans_of_exp = function
+  | M.CONST _ -> false
+  | M.VAR _ -> false
+  | M.FN _ -> false
+  | M.APP _ -> true
+  | M.LET (M.REC (_, _, e1), e2) -> 
+    expans_of_exp e1 || expans_of_exp e2
+  | M.LET (M.VAL (_, e1), e2) ->
+    expans_of_exp e1 || expans_of_exp e2
+  | M.IF (e1, e2, e3) ->
+    expans_of_exp e1 || expans_of_exp e2 || expans_of_exp e3
+  | M.BOP (_, e1, e2) ->
+    expans_of_exp e1 || expans_of_exp e2
+  | M.READ -> false
+  | M.WRITE e -> expans_of_exp e
+  | M.MALLOC _ -> true
+  | M.ASSIGN (e1, e2) ->
+    expans_of_exp e1 || expans_of_exp e2
+  | M.BANG e ->
+    expans_of_exp e
+  | M.SEQ (e1, e2) ->
+    expans_of_exp e1 || expans_of_exp e2
+  | M.PAIR (e1, e2) ->
+    expans_of_exp e1 || expans_of_exp e2
+  | M.FST e -> expans_of_exp e
+  | M.SND e -> expans_of_exp e
+
+(* let rec print s n = 
+  let var_name = "x_" ^ (string_of_int n) in
+  let t = s (TVar var_name) in
+  if n > 0 then begin
+    match t with
+    | TVar name -> 
+      if name = var_name then print s (n - 1)
+      else begin 
+        print_endline (var_name ^ " : " ^ (string_of_typ t));
+        print s (n - 1)
+      end
+    | _ -> begin
+      print_endline (var_name ^ " : " ^ (string_of_typ t));
+      print s (n - 1)
+    end
+  end
+  else () *)
+
+let rec m_algorithm tyenv exp t = 
+  match exp with
+  | M.CONST (M.S s) -> unify t TString
+  | M.CONST (M.N n) -> unify t TInt
+  | M.CONST (M.B b) -> unify t TBool
+  | M.VAR id -> 
+    let scheme_of_id =
+      try List.assoc id tyenv
+      with Not_found -> 
+        raise (M.TypeError ("No type for " ^ id ^ " in type environment")) in
+    let new_scheme = subst_scheme empty_subst scheme_of_id in
+    begin 
+      match new_scheme with
+      | SimpleTyp inner_t -> unify t inner_t
+      | GenTyp (vl, inner_t) -> unify t inner_t
+    end
+  | M.FN (arg_id, body) ->
+    let arg_t = TVar (new_var ()) in
+    let res_t = TVar (new_var ()) in
+    let s = unify t (TFun (arg_t, res_t)) in
+    let binding = (arg_id, SimpleTyp (s arg_t)) in
+    let s' = 
+      m_algorithm (add_to_env binding (subst_env s tyenv)) body (s res_t) in
+    s' @@ s
+  | M.APP (fun_exp, arg_exp) ->
+    let arg_t = TVar (new_var ()) in 
+    let s = m_algorithm tyenv fun_exp (TFun (arg_t, t)) in
+    let s' = m_algorithm (subst_env s tyenv) arg_exp (s arg_t) in
+    s' @@ s
+  | M.LET (M.REC (fun_id, arg_id, body), parent) ->
+    let arg_t = TVar (new_var ()) in
+    let res_t = TVar (new_var ()) in
+    (* let fun_t = TFun (arg_t, res_t) in *)
+    let arg_binding = (arg_id, SimpleTyp arg_t) in
+    let tyenv' = add_to_env arg_binding tyenv in
+    let fun_binding = (fun_id, SimpleTyp (TFun (arg_t, res_t))) in
+    let tyenv'' = add_to_env fun_binding tyenv' in
+    let s = m_algorithm tyenv'' body res_t in
+    let tyenv1 = subst_env s tyenv'' in
+    let fun_binding_gen = 
+      (fun_id, generalize tyenv (TFun (s arg_t, s res_t))) in
+    let tyenv1' = add_to_env fun_binding_gen tyenv1 in
+    let s' = m_algorithm tyenv1' parent (s t) in
+    s' @@ s
+  | M.LET (M.VAL (id, body), parent) ->
+    let child_t = TVar (new_var ()) in
+    let s = m_algorithm tyenv body child_t in
+    let tyenv1 = subst_env s tyenv in
+    let binding = 
+      if expans_of_exp body then (id, SimpleTyp (s child_t))
+      else (id, generalize tyenv1 (s child_t)) in
+    let s' = m_algorithm (add_to_env binding tyenv1) parent (s t) in
+    s' @@ s
+  | M.IF (cond, if_body, else_body) ->
+    let s = m_algorithm tyenv cond TBool in
+    let tyenv1 = subst_env s tyenv in
+    let t1 = s t in
+    let s' = m_algorithm tyenv1 if_body t1 in
+    let tyenv2 = subst_env s' tyenv1 in
+    let t2 = s' t1 in
+    let s'' = m_algorithm tyenv2 else_body t2 in
+    s'' @@ (s' @@ s)
+  | M.BOP (bop, lhs, rhs) ->
+    begin
+      match bop with
+      | M.ADD | M.SUB ->
+        let s = unify t TInt in
+        let tyenv1 = subst_env s tyenv in
+        let s' = m_algorithm tyenv1 lhs TInt in
+        let tyenv2 = subst_env s' tyenv1 in
+        let s'' = m_algorithm tyenv2 rhs TInt in
+        s'' @@ (s' @@ s)
+      | M.EQ ->
+        let s = unify t TBool in
+        let tyenv1 = subst_env s tyenv in
+        let lhs_t = TVar (new_var ()) in
+        let s' = m_algorithm tyenv1 lhs lhs_t in
+        let tyenv2 = subst_env s' tyenv1 in
+        let lhs_t' = (s' @@ s) lhs_t in
+        let s'' = unify (TComparable (TVar (new_var ()))) lhs_t' in
+        let tyenv3 = subst_env s'' tyenv2 in
+        let s''' = m_algorithm tyenv3 rhs (s'' lhs_t') in
+        s''' @@ (s'' @@ (s' @@ s))
+      | M.AND | M.OR ->
+        let s = unify t TBool in
+        let tyenv1 = subst_env s tyenv in
+        let s' = m_algorithm tyenv1 lhs TBool in
+        let tyenv2 = subst_env s' tyenv1 in
+        let s'' = m_algorithm tyenv2 rhs TBool in
+        s'' @@ (s' @@ s)
+    end
+  | M.READ -> unify t TInt
+  | M.WRITE e ->
+    let s = m_algorithm tyenv e t in
+    let s' = unify (s t) (TPrim (TVar (new_var ()))) in
+    s' @@ s
+  | M.MALLOC e ->
+    let inner_t = TVar (new_var()) in
+    let s = unify t (TLoc inner_t) in
+    let s' = m_algorithm (subst_env s tyenv) e (s inner_t) in
+    s' @@ s
+  | M.ASSIGN (lhs, rhs) ->
+    let s = m_algorithm tyenv lhs (TLoc t) in
+    let s' = m_algorithm (subst_env s tyenv) rhs (s t) in
+    s' @@ s
+  | M.BANG e -> m_algorithm tyenv e (TLoc t)
+  | M.SEQ (e, e') ->
+    let s = m_algorithm tyenv e (TVar (new_var ())) in
+    let s' = m_algorithm (subst_env s tyenv) e' (s t) in
+    s' @@ s
+  | M.PAIR (fst, snd) ->
+    let t1 = TVar (new_var ()) in
+    let t2 = TVar (new_var ()) in
+    let s = unify t (TPair (t1, t2)) in
+    let tyenv1 = subst_env s tyenv in
+    let s' = m_algorithm tyenv1 fst (s t1) in
+    let composed = s' @@ s in
+    let tyenv2 = subst_env s' tyenv1 in
+    let s'' = m_algorithm tyenv2 snd (composed t2) in
+    s'' @@ composed
+  | M.FST pair ->
+    let t2 = TVar (new_var ()) in
+    m_algorithm tyenv pair (TPair (t, t2))
+  | M.SND pair ->
+    let t1 = TVar (new_var ()) in
+    m_algorithm tyenv pair (TPair (t1, t))
+
+let rec mtyp_of_typ t =
+  match t with
+  | TInt -> M.TyInt
+  | TBool -> M.TyBool
+  | TString -> M.TyString
+  | TPrim inner_t -> mtyp_of_typ inner_t
+  | TPair (t1, t2) -> M.TyPair (mtyp_of_typ t1, mtyp_of_typ t2)
+  | TLoc (inner_t) -> M.TyLoc (mtyp_of_typ inner_t)
+  | TComparable inner_t -> mtyp_of_typ inner_t
+  | TFun (arg_t, res_t) -> 
+    raise (M.TypeError ((string_of_typ t) ^ " should not be the final type."))
+  | TVar name -> raise (M.TypeError (name ^ " is undefined"))
+
+(* TODO : Implement this function *)
+let check : M.exp -> M.typ = fun exp ->
+  let t = TVar (new_var ()) in
+  let s = m_algorithm [] exp t in
+  mtyp_of_typ (s t)
+  (* raise (M.TypeError "Type Checker Unimplemented") *)
+
